@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';// "firebase/app";
-import { getAuth } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js'; // 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js'; // 'firebase/auth'
 import { getDatabase, ref, child, get, set, onValue } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js';// "firebase/database";    
 
 const firebaseConfig = {
@@ -64,8 +64,6 @@ get(child(dbRef, "Students")).then((snapshot) => {
   console.error(error);
 });
 
-const auth = getAuth();
-
 const coursesButton = document.getElementById("coursesButton");
 if (coursesButton) {
   coursesButton.addEventListener("click", getCourses);
@@ -121,22 +119,10 @@ function setAttendance(finalAttendanceIdValue, courseNameValue) {
       console.error("Error adding attendance record:", error);
     });
 
-    // getAttendance();
     setInterval(getAttendance, 10000);
 }
 
 function getAttendance() {
-  // const db = getDatabase(app);
-  // const attendanceRef = ref(db, `Attendance/${finalAttendanceId}`);
-  // onValue(attendanceRef, (snapshot) => {
-  //   const students = snapshot.val() || {};
-  //   const studentList = Object.keys(students)
-  //     .map(studentId => `<div class="student">${studentId}</div>`)
-  //     .join("");
-  //     document.getElementById("students").innerHTML = studentList;
-  //   console.log("______ GET STUDENT LIST:");
-  //   console.log(studentList);
-
   const db = getDatabase(app);
   const attendanceRef = ref(db, `Attendance/${finalAttendanceId}`);
   onValue(attendanceRef, (snapshot) => {
@@ -156,5 +142,36 @@ function getAttendance() {
     document.getElementById("students").innerHTML = studentList;
     console.log("______ GET STUDENT LIST:");
     console.log(studentList);
+  });
+}
+
+const signInButton = document.getElementById("signIn");
+if (signInButton) {
+  signInButton.addEventListener("click", signIn);
+}
+
+// Authentication methods
+const auth = getAuth();
+function signIn() {
+  var email = document.getElementById("email");
+  var password = document.getElementById("password");
+
+  if (!email.value || !password.value) {
+    console.log("No students found.");
+    alert("Please enter your credentials");
+    return;
+  }
+
+  console.log(email.value);
+  console.log(password.value);
+  signInWithEmailAndPassword(auth, email.value, password.value)
+  .then((userCredential) => {
+    alert("Active user: " + email.value);
+    location.href = 'MainView.html';
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("ERROR: " + errorCode + " " + errorMessage);
   });
 }
