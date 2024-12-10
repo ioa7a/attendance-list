@@ -1,0 +1,33 @@
+.main_buttons button {
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block;
+    width: 20%;
+    margin-bottom: 10px;
+    top: 50%;
+    left: 50%;
+}
+
+p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+  table, th, td {
+    border: 1px solid;
+  }
+
+  td, th {
+    padding: 8px;
+  }
+
+  tr:hover {background-color: #c9c9c9;} 
+
+  th {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #000a1D;
+    color: white;
+  }
