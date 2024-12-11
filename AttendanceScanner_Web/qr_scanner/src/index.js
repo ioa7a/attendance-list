@@ -84,7 +84,7 @@ const qrCodeView = document.getElementById("qrCodeView");
 
 let finalAttendanceId; 
 function generateQRCode() {
-  let attendanceId = "id" + Math.random().toString(16).slice(2)
+  let attendanceId = "id"
   let date = Date.now()
   finalAttendanceId = attendanceId + "_" + courseName.value.trim() + "_" + date
   console.log(attendanceId)
@@ -118,9 +118,9 @@ function setAttendance(finalAttendanceIdValue, courseNameValue) {
     }).catch((error) => {
       console.error("Error adding attendance record:", error);
     });
-
-    setInterval(getAttendance, 10000);
 }
+
+setInterval(getAttendance, 10000);
 
 function getAttendance() {
   const db = getDatabase(app);

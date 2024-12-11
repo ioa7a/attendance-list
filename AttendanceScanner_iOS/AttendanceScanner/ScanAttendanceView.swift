@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct ScanAttendanceView: View {
-//    @State private var path = NavigationPath()
-    @State private var studentName = "Ion Popescu"
+   private var studentName: String
+   
+   init(studentName: String) {
+      self.studentName = studentName
+   }
+   
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -19,8 +23,10 @@ struct ScanAttendanceView: View {
                 
                 Spacer()
                 NavigationLink("Scan Attendance Code") {
-                    QRScannerView()
+                   QRScannerView(studentName: studentName)
                 }
+               
+               
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 80)
@@ -30,5 +36,5 @@ struct ScanAttendanceView: View {
 }
 
 #Preview {
-    ScanAttendanceView()
+   ScanAttendanceView(studentName: "test")
 }
