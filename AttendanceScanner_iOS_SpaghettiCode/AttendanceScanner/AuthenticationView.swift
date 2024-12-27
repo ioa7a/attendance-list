@@ -92,16 +92,24 @@ struct AuthenticationView: View {
             Button(action: {
                // perform login action here
                if email.isEmpty {
-                  showEmailError = true
+                  withAnimation {
+                     showEmailError = true
+                  }
                }
-               
+
                if password.isEmpty {
-                  showPasswordError = true
+                  withAnimation {
+                     showPasswordError = true
+                  }
                }
                
                if !email.isEmpty && !password.isEmpty {
                   print("Will login")
-                  showAuthenticationError = false
+                  withAnimation {
+                     showEmailError = false
+                     showPasswordError = false
+                     showAuthenticationError = false
+                  }
                   Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                      if let _ = authResult {
                         // Get student name from datebase
@@ -114,10 +122,10 @@ struct AuthenticationView: View {
                                  print("_______ error")
                                  return
                               }
-                              
+
                               let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
                               let decoded = try JSONDecoder().decode([Student].self, from: jsonData)
-                              var students: [Student] = decoded
+                              let students: [Student] = decoded
                               let loggedInStudent = students.first(where: {$0.email == email })
                               studentName = loggedInStudent?.name ?? "N/A"
                            } catch {
@@ -126,7 +134,9 @@ struct AuthenticationView: View {
                         }
                         path.append("ScanAttendanceView")
                      } else {
-                        showAuthenticationError = true
+                        withAnimation {
+                           showAuthenticationError = true
+                        }
                      }
                   }
                }
@@ -137,7 +147,7 @@ struct AuthenticationView: View {
          }
          .navigationDestination(for: String.self) { view in
             if view == "ScanAttendanceView" {
-               ScanAttendanceView(studentName: studentName)
+               ScanAttendanceView(email: email)
             }
          }
          .padding(.vertical, 80)
