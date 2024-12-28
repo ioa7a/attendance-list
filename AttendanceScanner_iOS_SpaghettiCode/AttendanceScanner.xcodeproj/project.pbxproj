@@ -35,20 +35,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		270C74262CF37F020074E458 /* Exceptions for "AttendanceScannerUITests" folder in "AttendanceScanner" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"GoogleService-Info.plist",
-			);
-			target = 27C5E83D2CE726AB004170C8 /* AttendanceScanner */;
-		};
-		270C74272CF37F020074E458 /* Exceptions for "AttendanceScannerUITests" folder in "AttendanceScannerUITests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"GoogleService-Info.plist",
-			);
-			target = 27C5E8572CE726B5004170C8 /* AttendanceScannerUITests */;
-		};
 		278A62A22CE8A801002B1ADC /* Exceptions for "AttendanceScanner" folder in "AttendanceScanner" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -70,15 +56,6 @@
 		27C5E8512CE726B5004170C8 /* AttendanceScannerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AttendanceScannerTests;
-			sourceTree = "<group>";
-		};
-		27C5E85B2CE726B5004170C8 /* AttendanceScannerUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				270C74262CF37F020074E458 /* Exceptions for "AttendanceScannerUITests" folder in "AttendanceScanner" target */,
-				270C74272CF37F020074E458 /* Exceptions for "AttendanceScannerUITests" folder in "AttendanceScannerUITests" target */,
-			);
-			path = AttendanceScannerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -115,7 +92,6 @@
 			children = (
 				27C5E8402CE726AB004170C8 /* AttendanceScanner */,
 				27C5E8512CE726B5004170C8 /* AttendanceScannerTests */,
-				27C5E85B2CE726B5004170C8 /* AttendanceScannerUITests */,
 				27C5E83F2CE726AB004170C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -144,6 +120,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2787BA472D1F5A810074654F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				27C5E8402CE726AB004170C8 /* AttendanceScanner */,
@@ -193,9 +170,6 @@
 			dependencies = (
 				27C5E85A2CE726B5004170C8 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				27C5E85B2CE726B5004170C8 /* AttendanceScannerUITests */,
-			);
 			name = AttendanceScannerUITests;
 			packageProductDependencies = (
 			);
@@ -237,6 +211,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				270C74282CF3869B0074E458 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2787BA452D1F5A5B0074654F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 27C5E83F2CE726AB004170C8 /* Products */;
@@ -299,6 +274,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2787BA472D1F5A810074654F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2787BA462D1F5A810074654F /* SwiftLintBuildToolPlugin */;
+		};
 		27C5E8502CE726B5004170C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 27C5E83D2CE726AB004170C8 /* AttendanceScanner */;
@@ -613,6 +592,14 @@
 				minimumVersion = 11.5.0;
 			};
 		};
+		2787BA452D1F5A5B0074654F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.57.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -625,6 +612,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 270C74282CF3869B0074E458 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		2787BA462D1F5A810074654F /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2787BA452D1F5A5B0074654F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

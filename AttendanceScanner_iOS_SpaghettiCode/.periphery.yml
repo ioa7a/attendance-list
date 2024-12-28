@@ -1,0 +1,6 @@
+project: AttendanceScanner.xcodeproj
+retain_public: true
+schemes:
+- AttendanceScanner
+targets:
+- AttendanceScanner

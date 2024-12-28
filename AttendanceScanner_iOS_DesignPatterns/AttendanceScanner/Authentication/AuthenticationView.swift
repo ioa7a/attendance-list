@@ -13,25 +13,16 @@ struct AuthenticationView: View {
    @State private var showPasswordError: Bool = false
    @State private var showProgressView: Bool = false
    @StateObject private var viewModel: AuthenticationViewModel = AuthenticationViewModel()
-   
+
    var body: some View {
       NavigationStack(path: $path) {
          ZStack(alignment: .center) {
             ScrollView {
-               VStack(alignment: .center, spacing: 20) {
-                  Image.logoIcon
-                  introTextView
-                  if viewModel.showAuthenticationError {
-                     authErrorView
-                  }
-                  textFieldsView
-                  Spacer()
-                  loginButtonView
-               }
+               scrollViewContent
             }
             
             if showProgressView {
-               ProgressView(Constants.loading)
+               ProgressView(Constant.loading.rawValue)
             }
          }
          .onAppear {
@@ -39,7 +30,7 @@ struct AuthenticationView: View {
          }
          .onChange(of: viewModel.shouldNavigateToMainScreen) {
             if viewModel.shouldNavigateToMainScreen {
-               path.append(Constants.scanAttendanceView)
+               path.append(Constant.scanAttendanceView.rawValue)
             }
          }
          .onChange(of: viewModel.email) {
@@ -49,7 +40,7 @@ struct AuthenticationView: View {
             showPasswordError = false
          }
          .navigationDestination(for: String.self) { view in
-            if view == Constants.scanAttendanceView {
+            if view == Constant.scanAttendanceView.rawValue {
                ScanAttendanceView(path: $path)
             }
          }
@@ -58,13 +49,26 @@ struct AuthenticationView: View {
       }
    }
    
+   private var scrollViewContent: some View {
+      VStack(alignment: .center, spacing: 20) {
+         Image.logoIcon
+         introTextView
+         if viewModel.showAuthenticationError {
+            authErrorView
+         }
+         textFieldsView
+         Spacer()
+         loginButtonView
+      }
+   }
+   
    private var introTextView: some View {
       VStack(alignment: .center, spacing: 10) {
-         Text(Constants.welcomeBack)
+         Text(Constant.welcomeBack.rawValue)
             .font(.title2)
             .fontWeight(.semibold)
          
-         Text(Constants.enterCredentials)
+         Text(Constant.enterCredentials.rawValue)
             .font(.headline)
             .fontWeight(.regular)
       }
@@ -92,14 +96,14 @@ struct AuthenticationView: View {
          TextFieldWithErrorView(textContent: $viewModel.email,
                                 showError: $showEmailError,
                                 textContentType: .emailAddress,
-                                textFieldTitle: Constants.emailTitle,
-                                errorText: Constants.emailError)
+                                textFieldTitle: Constant.emailTitle.rawValue,
+                                errorText: Constant.emailError.rawValue)
          
          TextFieldWithErrorView(textContent: $viewModel.password,
                                 showError: $showPasswordError,
                                 textContentType: .password,
-                                textFieldTitle: Constants.passwordTitle,
-                                errorText: Constants.passwordError)
+                                textFieldTitle: Constant.passwordTitle.rawValue,
+                                errorText: Constant.passwordError.rawValue)
       }
    }
    
@@ -110,7 +114,7 @@ struct AuthenticationView: View {
          viewModel.signIn()
          showProgressView = false
       }, label: {
-         Text(Constants.signIn)
+         Text(Constant.signIn.rawValue)
             .font(.headline)
       })
    }
@@ -128,8 +132,4 @@ struct AuthenticationView: View {
          }
       }
    }
-}
-
-#Preview {
-   AuthenticationView()
 }

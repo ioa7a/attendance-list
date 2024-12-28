@@ -35,23 +35,22 @@ struct AuthenticationView: View {
             }
             
             if showAuthenticationError {
-               withAnimation {
-                  ZStack {
-                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .frame(height: 60)
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(.red)
-                     HStack(spacing: 10) {
-                        Image(systemName: "exclamationmark.triangle")
-                           .resizable()
-                           .frame(width: 40, height: 40)
-                        VStack {
-                           Text("Something went wrong.")
-                           Text("Please try again later.")
-                        }
-                        .font(.headline)
-                        .fontWeight(.semibold)
+               ZStack {
+                  RoundedRectangle(cornerRadius: 10, style: .continuous)
+                     .frame(height: 60)
+                     .frame(maxWidth: .infinity)
+                     .foregroundStyle(.red)
+                     .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 5)
+                  HStack(spacing: 10) {
+                     Image(systemName: "exclamationmark.triangle")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                     VStack {
+                        Text("Something went wrong.")
+                        Text("Please try again later.")
                      }
+                     .font(.headline)
+                     .fontWeight(.semibold)
                   }
                }
             }
@@ -96,7 +95,7 @@ struct AuthenticationView: View {
                      showEmailError = true
                   }
                }
-
+               
                if password.isEmpty {
                   withAnimation {
                      showPasswordError = true
@@ -110,6 +109,7 @@ struct AuthenticationView: View {
                      showPasswordError = false
                      showAuthenticationError = false
                   }
+                  
                   Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                      if let _ = authResult {
                         // Get student name from datebase
@@ -118,18 +118,18 @@ struct AuthenticationView: View {
                         Task {
                            let snapshot = try await ref.child("Students").getData()
                            do {
-                              guard let value = snapshot.value as? [[String: Any]] else {
-                                 print("_______ error")
-                                 return
+                              if let value = snapshot.value as? [[String: Any]] {
+                              
+                                 let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                                 let decoded = try JSONDecoder().decode([Student].self, from: jsonData)
+                                 let students: [Student] = decoded
+                                 let loggedInStudent = students.first(where: {$0.email == email })
+                                 studentName = loggedInStudent?.name ?? "N/A"
+                              } else {
+                                 print("_____ ERROR")
                               }
-
-                              let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
-                              let decoded = try JSONDecoder().decode([Student].self, from: jsonData)
-                              let students: [Student] = decoded
-                              let loggedInStudent = students.first(where: {$0.email == email })
-                              studentName = loggedInStudent?.name ?? "N/A"
                            } catch {
-                               print("ERROR HERE: \(error)")
+                              print("ERROR HERE: \(error)")
                            }
                         }
                         path.append("ScanAttendanceView")
@@ -139,6 +139,9 @@ struct AuthenticationView: View {
                         }
                      }
                   }
+               } else {
+                  showEmailError = true
+                  showPasswordError = true
                }
             }, label: {
                Text("Sign In")
@@ -170,7 +173,4 @@ struct Student: Codable {
       case id = "Id"
       case name = "Name"
    }
-}
-#Preview {
-   AuthenticationView()
 }

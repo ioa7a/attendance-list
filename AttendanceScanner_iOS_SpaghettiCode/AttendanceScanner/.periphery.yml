@@ -1,0 +1,4 @@
+minimum_direct_references: 0
+exclude:
+ — “Generated”
+ — “ThirdParty”

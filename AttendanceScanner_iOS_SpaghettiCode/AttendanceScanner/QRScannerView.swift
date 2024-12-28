@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 struct QRScannerView: View {
    private var email: String
@@ -53,6 +54,7 @@ struct QRScannerView: View {
                RoundedRectangle(cornerRadius: 20)
                   .frame(width: 200, height: 200, alignment: .center)
                   .foregroundStyle(.red)
+                  .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 5)
                   .background(.clear)
                VStack(spacing: 15) {
                   Image(systemName: "x.square")
@@ -130,8 +132,3 @@ struct QRScannerView: View {
       }
    }
 }
-
-#Preview {
-   QRScannerView(email: "Test")
-}
-

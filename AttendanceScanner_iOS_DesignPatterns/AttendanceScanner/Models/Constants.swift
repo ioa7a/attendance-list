@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-public class Constants {
-   public static let scanAttendanceView = "ScanAttendanceView"
-   public static let welcomeBack = "Welcome Back!"
-   public static let NA = "N/A"
-   public static let noQrCode = "No QR code detected"
-   public static let emailTitle = "Email"
-   public static let passwordTitle = "Password"
-   public static let emailError = "Please enter a valid email address."
-   public static let passwordError = "Please enter your password."
-   public static let validationFailed = "Validation Failed!"
-   public static let validationSuccess = "Attendance Validated!"
-   public static let alreadyScanned = "Already Scanned!"
-   public static let enterCredentials = "Please enter your credentials to sign in."
-   public static let errorText = "Something went wrong."
-   public static let tryAgainLater = "Please try again later."
-   public static let signIn = "Sign In"
-   public static let signOut = "Sign Out"
-   public static let scanCode = "Scan Attendance Code"
-   public static let loading = "Loading..."
+public enum Constant: String {
+   case scanAttendanceView = "ScanAttendanceView"
+   case welcomeBack = "Welcome Back!"
+   case notAvailable = "N/A"
+   case noQrCode = "No QR code detected"
+   case emailTitle = "Email"
+   case passwordTitle = "Password"
+   case emailError = "Please enter a valid email address."
+   case passwordError = "Please enter your password."
+   case validationFailed = "Validation Failed!"
+   case validationSuccess = "Attendance Validated!"
+   case alreadyScanned = "Already Scanned!"
+   case enterCredentials = "Please enter your credentials to sign in."
+   case errorText = "Something went wrong."
+   case tryAgainLater = "Please try again later."
+   case signIn = "Sign In"
+   case signOut = "Sign Out"
+   case scanCode = "Scan Attendance Code"
+   case loading = "Loading..."
 }
 
 extension Image {

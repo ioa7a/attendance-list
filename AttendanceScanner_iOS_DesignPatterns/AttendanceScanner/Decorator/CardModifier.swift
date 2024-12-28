@@ -28,7 +28,10 @@ struct CardStyle: ViewModifier {
                              style: .continuous)
             .frame(maxWidth: .infinity)
             .foregroundStyle(cardBackgroundColor)
-            .customShadow(color: shadowColor, radius: shadowRadius, x: shadowX, y: shadowY)
+            .customShadow(color: shadowColor,
+                          radius: shadowRadius,
+                          xPoint: shadowX,
+                          yPoint: shadowY)
          }
    }
 }
@@ -52,7 +55,7 @@ extension View {
             cardBackgroundColor: cardBackgroundColor,
             shadowColor: shadowColor,
             shadowRadius: shadowRadius,
-            shadowX: shadowY,
+            shadowX: shadowX,
             shadowY: shadowY,
             verticalPadding: verticalPadding,
             horizontalPadding: horizontalPadding
@@ -60,4 +63,3 @@ extension View {
       )
    }
 }
-

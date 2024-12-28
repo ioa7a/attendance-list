@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QRScannerView: View {
-   @State var scanResult = Constants.noQrCode
+   @State var scanResult = Constant.noQrCode.rawValue
    @StateObject var viewModel: QRScannerViewModel = QRScannerViewModel()
 
    var body: some View {
@@ -16,7 +16,7 @@ struct QRScannerView: View {
          QRScanner(result: $scanResult)
          VStack {
             if viewModel.showProgressView {
-               ProgressView(Constants.loading)
+               ProgressView(Constant.loading.rawValue)
             }
             
             if viewModel.attendanceValidated {
@@ -42,8 +42,3 @@ struct QRScannerView: View {
          .padding(.bottom)
    }
 }
-
-#Preview {
-   QRScannerView()
-}
-

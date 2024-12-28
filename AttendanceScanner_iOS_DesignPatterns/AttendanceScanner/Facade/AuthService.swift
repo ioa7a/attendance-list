@@ -19,7 +19,7 @@ public final class AuthService {
                       onError: @escaping ((String?) -> Void)) {
       auth.signIn(withEmail: email,
                   password: password) { authResult, error in
-         if let _ = authResult {
+         if authResult != nil {
             onSuccess()
          } else {
             DispatchQueue.main.async {

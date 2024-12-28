@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 import FirebaseDatabase
 
 struct ScanAttendanceView: View {
@@ -38,23 +39,20 @@ struct ScanAttendanceView: View {
            Task {
               let snapshot = try await ref.child("Students").getData()
               do {
-                 guard let value = snapshot.value as? [[String: Any]] else {
-                    return
+                 if let value = snapshot.value as? [[String: Any]] {
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: value, options: []) {
+                       let decoded = try JSONDecoder().decode([Student].self, from: jsonData)
+                       let students: [Student] = decoded
+                       let loggedInStudent = students.first(where: { $0.email == email })
+                       if let studentName = loggedInStudent?.name {
+                          self.studentName = studentName
+                       }
+                    }
                  }
-                 
-                 let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
-                 let decoded = try JSONDecoder().decode([Student].self, from: jsonData)
-                 let students: [Student] = decoded
-                 let loggedInStudent = students.first(where: { $0.email == email })
-                 self.studentName = loggedInStudent?.name ?? "N/A"
               } catch {
                  print("ERROR HERE: \(error)")
               }
            }
         }
     }
-}
-
-#Preview {
-   ScanAttendanceView(email: "test@test.com")
 }

@@ -20,23 +20,26 @@ struct TextFieldWithErrorView: View {
          Text(textFieldTitle)
             .font(.callout)
             .fontWeight(.semibold)
-         if textContentType == .password {
-            SecureField(textFieldTitle,
-                        text: $textContent)
+         textFieldView
             .textFieldStyle(.roundedBorder)
             .textContentType(textContentType)
-         } else {
-            TextField(textFieldTitle,
-                        text: $textContent)
-            .textFieldStyle(.roundedBorder)
-            .textContentType(textContentType)
-         }
-         
+
          if showError {
             Text(errorText)
                .font(.caption)
                .foregroundStyle(Color.red)
          }
+      }
+   }
+   
+   @ViewBuilder
+   private var textFieldView: some View {
+      if textContentType == .password {
+         SecureField(textFieldTitle,
+                     text: $textContent)
+      } else {
+         TextField(textFieldTitle,
+                     text: $textContent)
       }
    }
 }

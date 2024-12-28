@@ -7,6 +7,8 @@
 
 import SwiftUI
 import AVFoundation
+import FirebaseAuth
+import FirebaseDatabase
 
 class QRScannerController: UIViewController {
     var captureSession = AVCaptureSession()
@@ -85,7 +87,7 @@ struct QRScanner: UIViewControllerRepresentable {
         func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
 
             // Check if the metadataObjects array is not nil and it contains at least one object.
-            if metadataObjects.count == 0 {
+           if metadataObjects.isEmpty {
                 scanResult = "No QR code detected"
                 return
             }

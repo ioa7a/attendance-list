@@ -9,7 +9,7 @@ import Foundation
 
 class ScanAttendanceViewModel: ObservableObject {
    lazy var studentEmail: String = UserDefaultsManager.shared.getStudentEmail()
-   @Published var studentName: String = Constants.NA
+   @Published var studentName: String = Constant.notAvailable.rawValue
    @Published var isLoading: Bool = false
    @Published var backToLogin: Bool = false
    
@@ -20,10 +20,12 @@ class ScanAttendanceViewModel: ObservableObject {
    func getStudentData() {
       isLoading = true
       AttendanceDatabase.shared.getStudentData { [weak self] studentData in
-         guard let self = self else { return }
+         guard let self = self else {
+            return
+         }
          let loggedInStudent = studentData.first(where: {
             $0.email == self.studentEmail
-         })?.name ?? Constants.NA
+         })?.name ?? Constant.notAvailable.rawValue
          self.studentName = loggedInStudent
          UserDefaultsManager.shared.setStudentName(studentName: loggedInStudent)
          self.isLoading = false

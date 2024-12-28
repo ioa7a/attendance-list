@@ -10,6 +10,7 @@
 		270C742A2CF3869B0074E458 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 270C74292CF3869B0074E458 /* FirebaseAuth */; };
 		270C742C2CF3869B0074E458 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 270C742B2CF3869B0074E458 /* FirebaseDatabase */; };
 		2776B04B2D1C1B46009D267B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2776B0492D1C1B46009D267B /* Preview Assets.xcassets */; };
+		2787BA2A2D1F53610074654F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2787BA292D1F535D0074654F /* .swiftlint.yml */; };
 		27AEC7A72D18CC28008A1A06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27AEC7A62D18CC28008A1A06 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -21,18 +22,11 @@
 			remoteGlobalIDString = 27C5E83D2CE726AB004170C8;
 			remoteInfo = AttendanceScanner;
 		};
-		27C5E8592CE726B5004170C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 27C5E8362CE726AB004170C8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 27C5E83D2CE726AB004170C8;
-			remoteInfo = AttendanceScanner;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2776B01E2D1B3095009D267B /* AttendanceScannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttendanceScannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2776B0492D1C1B46009D267B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2787BA292D1F535D0074654F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		27AEC7A62D18CC28008A1A06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27C5E83E2CE726AB004170C8 /* AttendanceScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AttendanceScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C5E84E2CE726B5004170C8 /* AttendanceScannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttendanceScannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,13 +75,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27C5E8552CE726B5004170C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -101,6 +88,7 @@
 		27C5E8352CE726AB004170C8 = {
 			isa = PBXGroup;
 			children = (
+				2787BA292D1F535D0074654F /* .swiftlint.yml */,
 				27C5E8512CE726B5004170C8 /* AttendanceScannerTests */,
 				27C5E83F2CE726AB004170C8 /* Products */,
 				27C5E8402CE726AB004170C8 /* AttendanceScanner */,
@@ -115,7 +103,6 @@
 			children = (
 				27C5E83E2CE726AB004170C8 /* AttendanceScanner.app */,
 				27C5E84E2CE726B5004170C8 /* AttendanceScannerTests.xctest */,
-				2776B01E2D1B3095009D267B /* AttendanceScannerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +121,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2787BA282D1F51B50074654F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				27C5E8402CE726AB004170C8 /* AttendanceScanner */,
@@ -170,26 +158,6 @@
 			productReference = 27C5E84E2CE726B5004170C8 /* AttendanceScannerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		27C5E8572CE726B5004170C8 /* AttendanceScannerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 27C5E8682CE726B5004170C8 /* Build configuration list for PBXNativeTarget "AttendanceScannerUITests" */;
-			buildPhases = (
-				27C5E8542CE726B5004170C8 /* Sources */,
-				27C5E8552CE726B5004170C8 /* Frameworks */,
-				27C5E8562CE726B5004170C8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				27C5E85A2CE726B5004170C8 /* PBXTargetDependency */,
-			);
-			name = AttendanceScannerUITests;
-			packageProductDependencies = (
-			);
-			productName = AttendanceScannerUITests;
-			productReference = 2776B01E2D1B3095009D267B /* AttendanceScannerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,10 +175,6 @@
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = 27C5E83D2CE726AB004170C8;
 					};
-					27C5E8572CE726B5004170C8 = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 27C5E83D2CE726AB004170C8;
-					};
 				};
 			};
 			buildConfigurationList = 27C5E8392CE726AB004170C8 /* Build configuration list for PBXProject "AttendanceScanner" */;
@@ -224,6 +188,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				270C74282CF3869B0074E458 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2787BA262D1F46520074654F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 27C5E83F2CE726AB004170C8 /* Products */;
@@ -232,7 +197,6 @@
 			targets = (
 				27C5E83D2CE726AB004170C8 /* AttendanceScanner */,
 				27C5E84D2CE726B5004170C8 /* AttendanceScannerTests */,
-				27C5E8572CE726B5004170C8 /* AttendanceScannerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,19 +206,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2787BA2A2D1F53610074654F /* .swiftlint.yml in Resources */,
 				2776B04B2D1C1B46009D267B /* Preview Assets.xcassets in Resources */,
 				27AEC7A72D18CC28008A1A06 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		27C5E84C2CE726B5004170C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		27C5E8562CE726B5004170C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,25 +236,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27C5E8542CE726B5004170C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2787BA282D1F51B50074654F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2787BA272D1F51B50074654F /* SwiftLintBuildToolPlugin */;
+		};
 		27C5E8502CE726B5004170C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 27C5E83D2CE726AB004170C8 /* AttendanceScanner */;
 			targetProxy = 27C5E84F2CE726B5004170C8 /* PBXContainerItemProxy */;
-		};
-		27C5E85A2CE726B5004170C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 27C5E83D2CE726AB004170C8 /* AttendanceScanner */;
-			targetProxy = 27C5E8592CE726B5004170C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -518,38 +468,6 @@
 			};
 			name = Release;
 		};
-		27C5E8692CE726B5004170C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ioanabojinca.AttendanceScannerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AttendanceScanner;
-			};
-			name = Debug;
-		};
-		27C5E86A2CE726B5004170C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ioanabojinca.AttendanceScannerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = AttendanceScanner;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -580,15 +498,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27C5E8682CE726B5004170C8 /* Build configuration list for PBXNativeTarget "AttendanceScannerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				27C5E8692CE726B5004170C8 /* Debug */,
-				27C5E86A2CE726B5004170C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -598,6 +507,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.5.0;
+			};
+		};
+		2787BA262D1F46520074654F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.57.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -612,6 +529,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 270C74282CF3869B0074E458 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		2787BA272D1F51B50074654F /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2787BA262D1F46520074654F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

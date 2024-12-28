@@ -9,14 +9,16 @@ import Foundation
 import SwiftUI
 
 final class QRScannerViewModel: ObservableObject {
-   private let defaultValue = Constants.noQrCode
+   private let defaultValue = Constant.noQrCode.rawValue
    @Published var showProgressView: Bool = false
    @Published var attendanceValidated: Bool = false
    @Published var showAttendanceError: Bool = false
    @Published var errorMessage: String?
    
    var scanResultViewLabelText: String {
-      return showAttendanceError ? errorMessage ?? Constants.validationFailed : Constants.validationSuccess
+      return showAttendanceError ? errorMessage ??
+      Constant.validationFailed.rawValue :
+      Constant.validationSuccess.rawValue
    }
    
    var scanResultViewLabelImageName: Image {
@@ -31,11 +33,13 @@ final class QRScannerViewModel: ObservableObject {
       showAttendanceError = false
       errorMessage = nil
       DispatchQueue.global(qos: .background).async { [weak self] in
-         guard let self = self else { return }
-         guard scanResult != self.defaultValue else { return }
+         guard let self,
+               scanResult != self.defaultValue else {
+            return
+         }
          if UserDefaultsManager.shared.getAttendanceScanStatus(attendanceId: scanResult) {
             self.updateUI(showError: true,
-                          errorMessage: Constants.alreadyScanned)
+                          errorMessage: Constant.alreadyScanned.rawValue)
          } else {
             AttendanceDatabase.shared.addStudentAttendance(attendanceReference: scanResult,
                                                            studentName: self.studentName)
@@ -52,16 +56,18 @@ final class QRScannerViewModel: ObservableObject {
                $0 == self.studentName
             }) {
             self.updateUI()
-         }  else {
+         } else {
             self.updateUI(showError: true,
-                          errorMessage: Constants.validationFailed)
+                          errorMessage: Constant.validationFailed.rawValue)
          }
       }
    }
    
    func updateUI(showError: Bool = false, errorMessage: String? = nil) {
       DispatchQueue.main.async { [weak self] in
-         guard let self = self else { return }
+         guard let self = self else {
+            return
+         }
          self.showProgressView = false
          self.showAttendanceError = showError
          self.errorMessage = errorMessage

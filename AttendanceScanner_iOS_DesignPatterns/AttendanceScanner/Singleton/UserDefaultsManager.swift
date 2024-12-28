@@ -7,11 +7,6 @@
 
 import Foundation
 
-public enum UserDefaultsKeys: String {
-   case studentName
-   case studentEmail
-}
-
 public final class UserDefaultsManager {
    public static let shared = UserDefaultsManager()
    private lazy var defaults = UserDefaults.standard
@@ -27,11 +22,11 @@ public final class UserDefaultsManager {
    }
    
    public func getStudentName() -> String {
-      return defaults.string(forKey: UserDefaultsKeys.studentName.rawValue) ?? Constants.NA
+      return defaults.string(forKey: UserDefaultsKeys.studentName.rawValue) ?? Constant.notAvailable.rawValue
    }
    
    public func getStudentEmail() -> String {
-      return defaults.string(forKey: UserDefaultsKeys.studentEmail.rawValue) ?? Constants.NA
+      return defaults.string(forKey: UserDefaultsKeys.studentEmail.rawValue) ?? Constant.notAvailable.rawValue
    }
    
    public func setAttendanceScanned(attendanceId: String) {

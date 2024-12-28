@@ -33,19 +33,15 @@ struct ScanAttendanceView: View {
    
    private var buttonsView: some View {
       VStack(alignment: .center, spacing: 20) {
-         NavigationLink(Constants.scanCode) {
+         NavigationLink(Constant.scanCode.rawValue) {
             QRScannerView()
          }
          
          Button {
             viewModel.logout()
          } label: {
-            Text(Constants.signOut)
+            Text(Constant.signOut.rawValue)
          }
       }
    }
-}
-
-#Preview {
-   ScanAttendanceView(path: .constant(NavigationPath()))
 }

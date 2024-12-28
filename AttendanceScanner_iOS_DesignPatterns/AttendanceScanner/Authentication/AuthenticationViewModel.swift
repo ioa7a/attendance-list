@@ -13,7 +13,7 @@ class AuthenticationViewModel: ObservableObject {
    @Published var password: String = ""
    @Published var showAuthenticationError: Bool = false
    @Published var shouldNavigateToMainScreen: Bool = false
-   @Published var errorMessage: String = Constants.errorText
+   @Published var errorMessage: String = Constant.errorText.rawValue
    
    func clearData() {
       self.email = ""
@@ -21,13 +21,15 @@ class AuthenticationViewModel: ObservableObject {
    }
    
    func signIn() {
-      guard !email.isEmpty && !password.isEmpty else { return }
+      guard !email.isEmpty && !password.isEmpty else {
+         return
+      }
       shouldNavigateToMainScreen = false
       showAuthenticationError = false
-      performLogIn(email: email, password: password)
+      performLogIn()
    }
    
-   private func performLogIn(email: String, password: String) {
+   private func performLogIn() {
       AuthService.shared.signIn(email: self.email,
                                 password: self.password) {
          UserDefaultsManager.shared.setStudentEmail(email: self.email)
@@ -39,7 +41,7 @@ class AuthenticationViewModel: ObservableObject {
    
    private func updateViewForError(with errorMessage: String?) {
       withAnimation {
-         self.errorMessage = errorMessage ?? Constants.errorText
+         self.errorMessage = errorMessage ?? Constant.errorText.rawValue
          self.showAuthenticationError = true
          self.shouldNavigateToMainScreen = false
       }
