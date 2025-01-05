@@ -10,11 +10,14 @@ import FirebaseAuth
 import FirebaseDatabase
 
 struct ScanAttendanceView: View {
+   @Binding var path: NavigationPath
    @State private var studentName: String = ""
+   @State private var backToLogin: Bool = false
    private var email: String
    
-   init(email: String) {
+   init(email: String, navigationPath: Binding<NavigationPath>) {
       self.email = email
+      _path = navigationPath
    }
    
     var body: some View {
@@ -28,6 +31,17 @@ struct ScanAttendanceView: View {
                 NavigationLink("Scan Attendance Code") {
                    QRScannerView(email: email)
                 }
+               
+               Button {
+                  do {
+                     try Auth.auth().signOut()
+                     backToLogin = true
+                  } catch {
+                     //
+                  }
+               } label: {
+                  Text("Sign Out")
+               }
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 80)
@@ -52,6 +66,11 @@ struct ScanAttendanceView: View {
               } catch {
                  print("ERROR HERE: \(error)")
               }
+           }
+        }
+        .onChange(of: backToLogin) {
+           if backToLogin {
+              path.removeLast()
            }
         }
     }

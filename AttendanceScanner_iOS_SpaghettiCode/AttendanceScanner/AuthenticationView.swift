@@ -109,7 +109,6 @@ struct AuthenticationView: View {
                      showPasswordError = false
                      showAuthenticationError = false
                   }
-                  
                   Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                      if let _ = authResult {
                         // Get student name from datebase
@@ -126,10 +125,10 @@ struct AuthenticationView: View {
                                  let loggedInStudent = students.first(where: {$0.email == email })
                                  studentName = loggedInStudent?.name ?? "N/A"
                               } else {
-                                 print("_____ ERROR")
+//                                 print("_____ ERROR")
                               }
                            } catch {
-                              print("ERROR HERE: \(error)")
+//                              print("ERROR HERE: \(error)")
                            }
                         }
                         path.append("ScanAttendanceView")
@@ -150,7 +149,7 @@ struct AuthenticationView: View {
          }
          .navigationDestination(for: String.self) { view in
             if view == "ScanAttendanceView" {
-               ScanAttendanceView(email: email)
+               ScanAttendanceView(email: email, navigationPath: $path)
             }
          }
          .padding(.vertical, 80)

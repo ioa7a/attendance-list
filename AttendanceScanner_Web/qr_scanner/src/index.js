@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';// "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js'; // 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js'; // 'firebase/auth'
 import { getDatabase, ref, child, get, set, onValue } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js';// "firebase/database";    
+import { getPerformance } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-performance.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDe0WsQnpZOtXiM-ElP08JJFh6FdBfMSa8",
@@ -13,6 +14,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const perf = getPerformance(app);
 
 const dbRef = ref(getDatabase());
 get(child(dbRef, "Courses")).then((snapshot) => {
@@ -154,8 +156,8 @@ if (signInButton) {
 }
 
 // Authentication methods
-const auth = getAuth();
 function signIn() {
+  const auth = getAuth();
   var email = document.getElementById("email");
   var password = document.getElementById("password");
 
@@ -177,4 +179,16 @@ function signIn() {
     const errorMessage = error.message;
     alert("ERROR: " + errorCode + " " + errorMessage);
   });
+}
+
+const signOutButton = document.getElementById("signOut");
+if (signOutButton) {
+  signOutButton.addEventListener("click", logOut);
+}
+function logOut() {
+  const auth = getAuth()
+  auth.signOut().then(() => {
+    console.log('Signed Out');
+    location.href = 'SignInView.html'
+  })
 }

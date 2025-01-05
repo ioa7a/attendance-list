@@ -4,7 +4,7 @@ disabled_rules:
 opt_in_rules:
 - empty_count
 - yoda_condition
-- closure_body_length
+#- closure_body_length
 - closure_end_indentation
 - closure_spacing
 - comma_inheritance
